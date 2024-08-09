@@ -1,0 +1,15 @@
+---
+name: Backend Push
+on:
+  push:
+    branches:
+      - selfhost
+    paths:
+      - "./server**"
+
+jobs:
+  frontend_image:
+    uses: ./.github/workflows/image.yaml
+    with:
+      image_name: "poker-planning-be"
+      directory: "./server"

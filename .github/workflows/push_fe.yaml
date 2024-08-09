@@ -1,0 +1,15 @@
+---
+name: Frontend Push
+on:
+  push:
+    branches:
+      - selfhost
+    paths:
+      - "./client**"
+
+jobs:
+  frontend_image:
+    uses: ./.github/workflows/image.yaml
+    with:
+      image_name: "poker-planning-fe"
+      directory: "./client"
