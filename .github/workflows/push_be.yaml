@@ -8,7 +8,7 @@ on:
       - "server/**"
 
 jobs:
-  frontend_image:
+  backend_image:
     uses: ./.github/workflows/image.yaml
     with:
       image_name: "poker-planning-be"
