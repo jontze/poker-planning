@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "poker-planning-frontend.fullname" . }}
+  labels:
+    {{- include "poker-planning-frontend.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "poker-planning-frontend.selectorLabels" . | nindent 4 }}
