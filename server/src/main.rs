@@ -44,14 +44,18 @@ async fn main() -> std::io::Result<()> {
             .app_data(Data::new(schema.clone()))
             .wrap(Cors::permissive())
             .wrap(middleware::Logger::default())
-            .service(web::resource("/").guard(guard::Post()).to(index))
+            .service(web::resource("/graphql").guard(guard::Post()).to(index))
             .service(
-                web::resource("/")
+                web::resource("/graphql")
                     .guard(guard::Get())
                     .guard(guard::Header("upgrade", "websocket"))
                     .to(index_ws),
             )
-            .service(web::resource("/").guard(guard::Get()).to(index_playground))
+            .service(
+                web::resource("/graphql")
+                    .guard(guard::Get())
+                    .to(index_playground),
+            )
             .service(
                 web::resource("/health_check")
                     .guard(guard::Get())
