@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/jontze/poker-planning-backend
+  repository: ghcr.io/jontze/poker-planning-be
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -41,7 +41,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8000
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -57,11 +57,11 @@ resources: {}
 
 livenessProbe:
   httpGet:
-    path: /
+    path: /health_check
     port: http
 readinessProbe:
   httpGet:
-    path: /
+    path: /health_check
     port: http
 
 autoscaling:
