@@ -7,6 +7,7 @@ RUN npm ci
 
 FROM node:16 AS builder
 WORKDIR /app
+ENV VITE_GRAPHQL_SECURE_WS_ENDPOINT=true
 COPY --from=installer /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
