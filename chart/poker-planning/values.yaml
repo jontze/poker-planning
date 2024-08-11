@@ -6,9 +6,10 @@ ingress:
   enabled: false
   className: ""
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
   hostname: "" # poker-planning.local
+  services:
+    frontendName: ""
+    backendName: ""
   tls:
     enabled: false
     secretName: ""

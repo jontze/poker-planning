@@ -22,9 +22,9 @@ spec:
   {{- end }}
   {{- if .Values.ingress.tls.enabled }}
   tls:    
-      secretName: {{ .Values.ingress.tls.secretName }}
     - hosts:      
         - {{ .Values.ingress.hostname }}          
+      secretName: {{ .Values.ingress.tls.secretName }}
   {{- end }}
   rules:
     - host: {{ .Values.ingress.hostname }}
@@ -34,14 +34,14 @@ spec:
             pathType: Prefix            
             backend:              
               service:
-                name: {{ include "poker-planning.fullname" . }}-backend
+                name: {{ .Values.ingress.services.backendName}}
                 port:
                   number: 8000    
           - path: /
             pathType: ImplementationSpecific
             backend:            
               service:
-                name: {{ include "poker-planning.fullname" . }}-frontend
+                name: {{ .Values.ingress.services.frontendName }}
                 port:
                   number: 80
 {{- end }}
